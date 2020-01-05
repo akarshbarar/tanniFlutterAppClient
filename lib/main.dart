@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:tanni_app_client/OtpPage.dart';
+import 'package:tanni_app_client/PaymentPage.dart';
 import 'package:tanni_app_client/corporate.dart';
 import 'package:tanni_app_client/entereprise.dart';
 import 'package:tanni_app_client/home.dart';
@@ -12,16 +14,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       routes: {
         '/login':(context)=>Login(),
         '/home':(context)=>Home(),
         '/residential':(context)=>Residential(),
         '/corporate':(context)=>Corporate(),
-        '/enterprise':(context)=>Enterprise()
+        '/enterprise':(context)=>Enterprise(),
+        '/otpPage':(context)=>OtpPage(),
+        '/payment':(context)=>PaymentPage()
       },
       theme: ThemeData(
-        primaryColor: Colors.red,
-        accentColor: Colors.white
+          primaryColor: Colors.red,
+          accentColor: Colors.white
       ),
       home: SplashScreen(),
     );
@@ -57,4 +62,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-

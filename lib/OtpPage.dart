@@ -1,14 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Login extends StatefulWidget {
+class OtpPage extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _OtpPageState createState() => _OtpPageState();
 }
 
-class _LoginState extends State<Login> {
+class _OtpPageState extends State<OtpPage> {
   @override
   Widget build(BuildContext context) {
-     return SafeArea(
+    return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         resizeToAvoidBottomPadding: false,
@@ -34,7 +35,7 @@ class _LoginState extends State<Login> {
                 children: <Widget>[
                   FlutterLogo(size: 100.0,),
                   SizedBox(height: 10.0,),
-                  Text("Enter Mobile Number to get OTP ",style: TextStyle(fontSize: 25.0),),
+                  Text("Enter OTP ",style: TextStyle(fontSize: 25.0),),
                   SizedBox(height: 10.0,),
                   TextField( autofocus: true,keyboardType: TextInputType.number,),
                   SizedBox(height: 10.0,),
@@ -60,13 +61,13 @@ class _LoginState extends State<Login> {
                         color: Colors.transparent,
                         child: InkWell(
                           onTap: (){
-                            Navigator.of(context).pushNamed('/otpPage');
+                            Navigator.of(context).pushNamed('/home');
                           },
                           child: Center(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Text("Get OTP",
+                                Text("Verify OTP",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontFamily: "Poppins-Bold",
@@ -88,6 +89,6 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+
   }
 }
-
