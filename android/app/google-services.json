@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "765055482616",
+    "firebase_url": "https://tanni-26a71.firebaseio.com",
+    "project_id": "tanni-26a71",
+    "storage_bucket": "tanni-26a71.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765055482616:android:954a3a5ac599599af5590d",
+        "android_client_info": {
+          "package_name": "com.tanni.tanni_app_client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "765055482616-bf0jl39lvodjjjd4hncnfn0ivhu1tffm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYeVZpyZzohN1CfPET1_F9BJClm7MQaC4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "765055482616-bf0jl39lvodjjjd4hncnfn0ivhu1tffm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

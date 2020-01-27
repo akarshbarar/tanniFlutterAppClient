@@ -7,6 +7,7 @@ import 'package:tanni_app_client/corporate.dart';
 import 'package:tanni_app_client/entereprise.dart';
 import 'package:tanni_app_client/home.dart';
 import 'package:tanni_app_client/login.dart';
+import 'package:tanni_app_client/register.dart';
 import 'package:tanni_app_client/residentail.dart';
 void main()=>runApp(MyApp());
 
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/login':(context)=>Login(),
+        '/register':(context)=>Register(),
         '/home':(context)=>Home(),
         '/residential':(context)=>Residential(),
         '/corporate':(context)=>Corporate(),
@@ -53,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Center(
           child: Column(
             children: <Widget>[
-              Image.asset("assets/logo.png"),
+              FlutterLogo(size: 50.0),
               CircularProgressIndicator(),
             ],
           ),

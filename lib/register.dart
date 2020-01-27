@@ -1,41 +1,43 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:tanni_app_client/home.dart';
 
-// ignore: must_be_immutable
-class OtpPage extends StatefulWidget {
-  // ignore: non_constant_identifier_names
-  String VerificationId;
-
-  // ignore: non_constant_identifier_names
-  OtpPage({@required this.VerificationId});
-
+class Register extends StatefulWidget {
   @override
-  _OtpPageState createState() => _OtpPageState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _OtpPageState extends State<OtpPage> {
+class _RegisterState extends State<Register> {
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  signInOtp(String otp)async {
+  TextEditingController emailController=new TextEditingController();
+  TextEditingController passwordController=new TextEditingController();
 
-    final AuthCredential credential = PhoneAuthProvider.getCredential(
-      verificationId: widget.VerificationId,
-      smsCode: otp,
-    );
 
-    final FirebaseUser user = (await _auth.signInWithCredential(credential)) as FirebaseUser;
-    final FirebaseUser currentUser = await _auth.currentUser();
-    String uid = user.uid;
+  // ignore: missing_return
+  Future<String> signUp(String email, String password) async {
+    AuthResult result = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email, password: password);
+    FirebaseUser user = result.user;
+    if(user.uid!=null){
+      print("INSIDE FUNCION");
+      Navigator.of(context).push(MaterialPageRoute(
 
-    assert(user.uid == currentUser.uid);
-    Navigator.pop(context);
-    Navigator.of(context).pushNamed('/home');
-    return 'signInWithPhoneNumber succeeded: $user';
+          builder: (context){
+            // ignore: missing_return
+            print("INSIDE route");
+            return Home(email:email,password:password,uid:user.uid);
+          }
+      ));
 
+//      Navigator.of(context).pushReplacementNamed('/home');
+    }
+    else{
+      print("SOme Error Ocured");
+    }
   }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -45,7 +47,7 @@ class _OtpPageState extends State<OtpPage> {
         body: Center(
             child:Container(
               width: 400.0,
-              height: 400.0,
+              height: 500.0,
               margin: EdgeInsets.all(10),
               padding: EdgeInsets.all(40),
               alignment: Alignment.center,
@@ -64,10 +66,40 @@ class _OtpPageState extends State<OtpPage> {
                 children: <Widget>[
                   FlutterLogo(size: 100.0,),
                   SizedBox(height: 10.0,),
-                  Text("Enter OTP ",style: TextStyle(fontSize: 25.0),),
+                  Text("Sign Up ",
+                    style: TextStyle(fontSize: 25.0),
+                    textAlign: TextAlign.center,
+                  ),
                   SizedBox(height: 10.0,),
-                  TextField( autofocus: true,keyboardType: TextInputType.number,),
+//                  TextField(
+//                    autofocus: true,
+//                    keyboardType: TextInputType.number,
+//                    controller: mobileController,
+//                  ),
+                  TextField(
+                    autofocus: true,
+                    keyboardType: TextInputType.emailAddress,
+                    controller: emailController,
+                    decoration: new InputDecoration(
+                        hintText: 'Email',
+                        icon: new Icon(
+                          Icons.mail,
+                          color: Colors.grey,
+                        )),
+                  ),
                   SizedBox(height: 10.0,),
+                  TextField(
+                    autofocus: true,
+                    keyboardType: TextInputType.text,
+                    controller: passwordController,
+                    obscureText: true,
+                    decoration: new InputDecoration(
+                        hintText: 'Password',
+                        icon: new Icon(
+                          Icons.lock,
+                          color: Colors.grey,
+                        )),
+                  ),
                   SizedBox(height: 10.0,),
                   InkWell(
                     onTap: (){},
@@ -90,13 +122,14 @@ class _OtpPageState extends State<OtpPage> {
                         color: Colors.transparent,
                         child: InkWell(
                           onTap: (){
-
+//                            sendOtpToMobileNumber(mobileController.text);
+                               signUp(emailController.text, passwordController.text);
                           },
                           child: Center(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Text("Verify OTP",
+                                Text("Register",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontFamily: "Poppins-Bold",
@@ -110,14 +143,17 @@ class _OtpPageState extends State<OtpPage> {
                       ),
                     ),
                   ),
+                  FlatButton(
+                    child: Text("Already have a account"),
+                    onPressed: (){
+                        Navigator.of(context).pop();
+                    },
+                  ),
                 ],
               ),
-
-
             )
         ),
       ),
     );
-
   }
 }
