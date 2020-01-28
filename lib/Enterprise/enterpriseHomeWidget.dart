@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 
 Future<List> getData() async{
   print("Inside get data");
-  final response=await http.get("https://fc1384ae.ngrok.io/commercial/getItems");
+  final response=await http.get("https://502b1308.ngrok.io/commercial/getItems");
   return json.decode(response.body);
 }
 Widget enterpriseHomeWidget(BuildContext context) {
@@ -19,7 +19,7 @@ Widget enterpriseHomeWidget(BuildContext context) {
         if (snapshot.hasError)
           print(snapshot.error);
         return snapshot.hasData
-            ? ItemList(list: snapshot.data,)
+            ?ItemList(list: snapshot.data,)
             : Center(child: new CircularProgressIndicator(backgroundColor: Colors.red,),);
       },
     ),

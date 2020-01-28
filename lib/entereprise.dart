@@ -64,15 +64,24 @@ class _EnterpriseState extends State<Enterprise> {
 
 
     return Scaffold(
-//      appBar: AppBar(
-//        actions: <Widget>[
-//          IconButton(icon: Icon(Icons.notifications),onPressed: (){},),
-//          IconButton(icon: Icon(Icons.search),onPressed: (){},),
-//        ],
-//      ),
+      appBar: AppBar(
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.close),onPressed: (){},tooltip: "Logout",),
+        ],
+        title: Text("Tanni"),
+      ),
       //drawer: Drawer(child: items,),
       body: tabpages[id],
       bottomNavigationBar: bnb,
+      floatingActionButton: FloatingActionButton(
+        splashColor: Colors.blueGrey,
+        backgroundColor: Colors.red,
+        tooltip: "Cart",
+        child: Icon(Icons.add_shopping_cart,color: Colors.white,),
+        onPressed: (){
+
+        },
+      ),
     );
   }
 }
