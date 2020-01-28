@@ -81,7 +81,7 @@ class _LoginState extends State<Login> {
 
                    Navigator.of(context).pushNamed('/corporate');
                  }
-                 if(type=='Enterprise'){//Commercial
+                 if(type=='Commercial'){//Commercial
                    print("Inside Commercial");
 
                    Navigator.of(context).pushNamed('/enterprise');

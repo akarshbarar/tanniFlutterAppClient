@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 
 Future<List> getData() async{
   print("Inside get data");
-  final response=await http.get("http://localhost:3000/commercial/getItems");
+  final response=await http.get("https://fc1384ae.ngrok.io/commercial/getItems");
   return json.decode(response.body);
 }
 Widget enterpriseHomeWidget(BuildContext context) {
@@ -66,19 +66,19 @@ class ItemList extends StatelessWidget{
                     CircleAvatar(
                       child: FlutterLogo(size: 42.0,),
                     ),
-                    Text(" "+list[i]['Title'],style: TextStyle(fontWeight: FontWeight.bold, fontSize:30.0),),
+                    Text(" "+list[i]['NumberOfBottles'],style: TextStyle(fontWeight: FontWeight.bold, fontSize:30.0),),
                   ],
                 ),
-                SizedBox(
-                  height: 180.0,
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned.fill(
-                          child: Image.network(list[i]['ImageUrl'])
-                      )
-                    ],
-                  ),
-                ),
+//                SizedBox(
+//                  height: 180.0,
+//                  child: Stack(
+//                    children: <Widget>[
+//                      Positioned.fill(
+//                          child: Image.network(list[i]['ImageUrl'])
+//                      )
+//                    ],
+//                  ),
+//                ),
                 Padding(padding: EdgeInsets.only(top: 5.0),),
 
                 Row(

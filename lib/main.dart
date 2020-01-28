@@ -8,7 +8,7 @@ import 'package:tanni_app_client/entereprise.dart';
 import 'package:tanni_app_client/home.dart';
 import 'package:tanni_app_client/login.dart';
 import 'package:tanni_app_client/register.dart';
-import 'package:tanni_app_client/residentail.dart';
+import 'package:tanni_app_client/residential.dart';
 void main()=>runApp(MyApp());
 
 class MyApp extends StatelessWidget {
