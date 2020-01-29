@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tanni_app_client/Enterprise/enterpriseHomeWidget.dart';
 import 'package:tanni_app_client/Enterprise/enterpriseProfileWidget.dart';
@@ -66,22 +67,17 @@ class _EnterpriseState extends State<Enterprise> {
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.close),onPressed: (){},tooltip: "Logout",),
+          IconButton(icon: Icon(Icons.close),onPressed: (){
+            Navigator.of(context).pop();
+            FirebaseAuth.instance.signOut();
+          },tooltip: "Logout",),
         ],
         title: Text("Tanni"),
       ),
       //drawer: Drawer(child: items,),
       body: tabpages[id],
       bottomNavigationBar: bnb,
-      floatingActionButton: FloatingActionButton(
-        splashColor: Colors.blueGrey,
-        backgroundColor: Colors.red,
-        tooltip: "Cart",
-        child: Icon(Icons.add_shopping_cart,color: Colors.white,),
-        onPressed: (){
 
-        },
-      ),
     );
   }
 }

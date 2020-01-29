@@ -1,11 +1,21 @@
 import 'dart:convert';
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:getflutter/getflutter.dart';
 import 'package:http/http.dart' as http;
+final FirebaseDatabase _database = FirebaseDatabase.instance;
 
+String ip;
 Future<List> getData() async{
+
+  _database.reference().child("Server").once().then((DataSnapshot snapshot) async{
+    ip=snapshot.value;
+    print("IP::"+ip);
+  });
+
   print("Inside get data");
-  final response=await http.get("https://tanni123.000webhostapp.com/getItems.php");
+  final response=await http.get("${ip}/commercial/getItems");
   return json.decode(response.body);
 }
 Widget corporateHomeWidget(BuildContext context) {
@@ -23,6 +33,7 @@ Widget corporateHomeWidget(BuildContext context) {
     ),
   );
 }
+
 class ItemList extends StatelessWidget{
 
   final List list;
@@ -38,37 +49,48 @@ class ItemList extends StatelessWidget{
         print(list[i]);
         return GestureDetector(
           onTap: (){
+//            Navigator.of(context).push(
+//              MaterialPageRoute(
+//                  builder: (context){
+//                    return Item(
+//                      imageUrl:list[i]['ImageUrl'],
+//                      title: list[i]['Title'],
+//                      price: list[i]['Price'],
+////
+////
+////                          l
+//                    );
+//                  }
+//              ),
+//            );
           },
-          child: Card(
-            color: Colors.white,
-            child: Column(
+          child: GFCard(
+            boxFit: BoxFit.cover,
+            image: Image.network('https://upload.wikimedia.org/wikipedia/commons/0/09/Dalian%2C_China%2C_satellite_image%2C_LandSat-5%2C_2010-08-03.jpg'),
+            title: GFListTile(
+                title: Text("Number Of Bottles::"+list[i]['NumberOfBottles'],style: TextStyle(
+                    fontSize: 25.0,
+                    color: Colors.black,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.bold
+                ),),
+                icon: GFIconButton(
+                  color: GFColor.danger,
+                  onPressed: (){},
+                  icon: Icon(Icons.favorite_border),
+
+                )
+            ),
+            content: Text("Price::"+list[i]['Price']),
+            buttonBar: GFButtonBar(
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    CircleAvatar(
-                      child: FlutterLogo(size: 42.0,),
-                    ),
-                    Text(" "+list[i]['Title'],style: TextStyle(fontWeight: FontWeight.bold, fontSize:30.0),),
-                  ],
+                GFButton(
+                  color: GFColor.danger,
+                  onPressed: () {},
+                  text: 'Buy',
+                  shape: GFButtonShape.pills,
+                  fullWidthButton: true,
                 ),
-                SizedBox(
-                  height: 180.0,
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned.fill(
-                          child: Image.network(list[i]['ImageUrl'])
-                      )
-                    ],
-                  ),
-                ),
-                Padding(padding: EdgeInsets.only(top: 5.0),),
-
-                Row(
-                  children: <Widget>[
-                    Text("Price:"+list[i]['Price'],style: TextStyle(color: Colors.black,fontSize: 25.0),)
-                  ],
-                ),
-
               ],
             ),
           ),
@@ -78,3 +100,4 @@ class ItemList extends StatelessWidget{
     );
   }
 }
+

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tanni_app_client/Residential/residentialHomeWidget.dart';
 import 'package:tanni_app_client/Residential/residentialProfileWidget.dart';
@@ -67,6 +68,15 @@ class _ResidentialState extends State<Residential> {
 
 
     return Scaffold(
+      appBar: AppBar(
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.close),onPressed: (){
+            Navigator.of(context).pop();
+            FirebaseAuth.instance.signOut();
+          },tooltip: "Logout",),
+        ],
+        title: Text("Tanni"),
+      ),
 //      appBar: AppBar(
 //        actions: <Widget>[
 //          IconButton(icon: Icon(Icons.notifications),onPressed: (){},),

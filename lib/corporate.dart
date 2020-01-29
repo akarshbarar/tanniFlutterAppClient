@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tanni_app_client/Corporate/corporateHomeWidget.dart';
 import 'package:tanni_app_client/Corporate/corporateProfileWidget.dart';
@@ -60,6 +61,15 @@ class _CorporateState extends State<Corporate> {
 
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          actions: <Widget>[
+            IconButton(icon: Icon(Icons.close),onPressed: (){
+              Navigator.of(context).pop();
+              FirebaseAuth.instance.signOut();
+            },tooltip: "Logout",),
+          ],
+          title: Text("Tanni"),
+        ),
         drawer: Drawer(child: items,),
         body: tabpages[id],
         bottomNavigationBar: bnb,
