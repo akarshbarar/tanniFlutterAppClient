@@ -32,7 +32,7 @@ dependencies:
   toast: ^0.1.5
   getflutter: ^1.0.2
   bot_toast: ^2.2.1
-
+  mysql1: ^0.17.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

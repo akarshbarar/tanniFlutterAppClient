@@ -15,7 +15,7 @@ Future<List> getData() async{
   });
 
   print("Inside get data");
-  final response=await http.get("${ip}/commercial/getItems");
+  final response=await http.get("${ip}/corporate/getItems");
   return json.decode(response.body);
 }
 Widget corporateHomeWidget(BuildContext context) {

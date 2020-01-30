@@ -93,12 +93,16 @@ class ItemList extends StatelessWidget{
                 GFButton(
                   color: GFColor.danger,
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                      // ignore: missing_return
-                      print("INSIDE route");
-                      print( list[i]['NumberOfBottles']);
-                      return Details(numberOfBottles: list[i]['NumberOfBottles'],price:list[i]['Price'] ,);
-                    }));
+                    Navigator.of(context).push(MaterialPageRoute(
+
+                        builder: (context){
+                          // ignore: missing_return
+                          print("INSIDE route");
+                          print( list[i]['NumberOfBottles']);
+                          return Details(list[i]['NumberOfBottles'].toString(),list[i]['Price'].toString());
+                        }
+                    ));
+
                   },
                   text: 'Buy',
                   shape: GFButtonShape.pills,
